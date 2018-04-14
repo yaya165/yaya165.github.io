@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>vue-langhw</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+    	<span v-bind:title="message" v-if="see">停住</span>
+    	<ul>
+    		<li v-for="item in items">{{item.shui}}</li>
+    	</ul>
+    	<input v-model="text" v-on:keyup.enter="addNew">
+	  	<ol>
+		    <todo-item
+		      v-for="item in groceryList"
+		      v-bind:todo="item"
+		      v-bind:key="item.id">
+		    </todo-item>
+	  	</ol>
+		
+    </div>
+</body>
+<script type="text/javascript">
+	Vue.component('todo-item', {
+	  props: ['todo'],
+	  template: '<li>{{ todo.text }}</li>'
+	})
+    var app = new Vue({
+    	el:'#app',
+    	data:{
+    		message:'页面加载于'+ new Date().toLocaleString(),
+    		see:true,
+    		items:[
+    			{shui:'apple'},
+    			{shui:'banana'},
+    			{shui:'orange'}
+    		],
+    		groceryList:[
+		      	{id:0, text:'蔬菜'},
+		      	{id:1, text:'奶酪'},
+		      	{id:2, text:'随便其它什么人吃的东西'}
+		    ],
+    		text:('')  		
+	    },
+	    methods:{
+	    	addNew:function(){
+	    		this.items.push({
+	    			shui:this.text
+	    		})
+	    		this.text=''
+	    	}
+	    }
+	})
+</script>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>vue-langhw</title>
+    <script type="text/javascript" src="./js/vue.js"></script>
+    <script type="text/javascript" src="./js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.js"></script>
+   
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/swiper.min.css">
+    <style type="text/css">
+    html, body {
+      position: relative;
+      height: 100%;
+      font-size: 62.5%;
+    }
+    body {
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+	h2,ul{padding: 0; margin: 0;}
+	ul{list-style: none;}
+	.swiper-container {width: 100%; height: 100%;}
+	.swiper-slide {width:100%; height:100%;}
+	.slider1{background-color: #9BF3D6;}
+	.slider2{background-color: #D3D4A5;}
+	.slider3{background-color: #93D5F3;}
+	.slider1 img.img_h{height: 5rem; width: 5rem; border-radius: 50%; margin: 1rem auto;}
+	/*1*/
+	h2{font-size: 3.5rem; height: 5rem; line-height: 6rem;}
+	.msg_list{font-size: 1.8rem;/* width: 68%;*/ line-height: 3rem;}
+	.msg_list li span{width: 10rem; display: inline-block;}
+	.msg_tex{font-size: 1.8rem; line-height: 2.5rem; margin-top: 1rem}
+	.nextArrow{position: absolute; bottom: 0%; width: 1.5rem; text-align:center; left: 47.5%; z-index: 99;}
+	.nextArrow img{width: 100%; bottom:0%; -webkit-animation: moveY 1s 0.2s infinite alternate;}
+	@-webkit-keyframes 'moveY' {
+	    0% {-webkit-transform:translateY(0px);}
+	    100%{-webkit-transform:translateY(-10px);}
+	}
+	/*2*/
+	.works{margin:4rem auto;}
+	.slider2 .works li{width:26%; height:auto; margin:5rem auto; background-color: #92BF70; display: block; border-radius: 50%; color: #FFF; font-size: 1.8rem;-webkit-animation:bigm 2s 1s infinite forwards;}
+	@-webkit-keyframes 'bigm' {
+	    0% {opacity: 0.2;}
+	    50% {opacity: 0.5;}
+	    100%{opacity: 1;}
+	}
+	.modal-content{top:19rem;}
+	.modal-header{border-bottom:none;}
+	.modal-header .close{margin-top: -0.6rem;}
+	.close{font-size: 3rem; width: 2rem; height: 2rem;}
+	.modal-body{display: none; font-size: 1.8rem;}
+
+	/*3*/
+	#b .swiper-slide{color:#FFF; font-size: 2rem; vertical-align: middle;}
+	#b .swiper-slide img{width: 80%; height: 30%;}
+</style>
+</head>
+<body>
+<div class="swiper-container" id="a">
+	<div class="swiper-wrapper">
+		<div class="swiper-slide container slider1 box">
+			<h2 class="text-center">{{tit}}</h2>
+			<img class="img_h img-responsive center-block" src="./images/langhw.jpg">
+			<div class="row">
+				<ul class="msg_list list-unstyled col-lg-6 col-md-6 col-sm-12">
+					<li v-for="item in msg"><span>{{item.tit}}</span>{{item.text}}</li>
+				</ul>
+				<p class="msg_tex col-lg-6 col-md-6 col-sm-12">
+					5年前端开发经验，精通html css， 熟练html5 css3 jquery js ajax bootstrap，熟悉 vue</br>
+					熟练使用dreamweaver photoshop sublime等开发工具(ps常用于切图、制作gif等)</br>
+					获得adobe开发者Ps Dw Flash Fw四项；CCAT证书</br>
+					可以独立完成前端工作，有良好的编码习惯，喜欢研究新技术，学习能力强
+				</p>
+			</div>
+		</div>
+		<div class="swiper-slide container slider2 box2">
+			<h2 class="text-center">{{tit2}}</h2>
+			<ul class="works">
+				<li class="text-center" v-for="item in works" data-toggle="modal" data-target="#layer">
+					{{item.year}}</br>
+					{{item.text}}
+				</li>
+			</ul>
+		</div>
+		<div class="swiper-slide slider3">
+			<h2 class="text-center">证书</h2>
+			<div class="swiper-container" id="b">
+				<div class="swiper-wrapper text-center">
+					<div class="swiper-slide">Adobe软件工程师(Ps Flash Dw Fw)</div>
+					<div class="swiper-slide"><img src="./images/ccat.jpg"/></div>
+					<div class="swiper-slide"><img src="./images/biy.jpg"/></div>
+				</div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+		</div>
+		<div class="nextArrow">
+			<img src="./images/nextBtn.png">
+		</div>
+	</div>
+</div>
+<div role="dialog" class="modal" id="layer">
+	<div class="modal-dialog">
+		<div class="modal-content box3">
+			<div class="modal-header">
+				<button data-dismiss="modal" class="close">
+					<span>&times;</span>
+				</button>
+			</div>
+			<div class="modal-body" v-for="item in workmain">
+				<p v-html="item.text"></p>
+				<p v-html="item.tech"></p>
+				<p v-html="item.link"></p>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="./js/swiper.min.js"></script>
+<script>
+	var mySwiper = new Swiper('#a',{
+		direction : 'vertical',
+	});
+
+   	var mySwiper2 = new Swiper('#b',{
+   		direction: 'horizontal',
+   		navigation: {
+	        nextEl: '.swiper-button-next',
+	        prevEl: '.swiper-button-prev'
+	    }
+  	});
+
+	var vu = new Vue({
+		el:'.box',
+		data:{
+			tit:'前端开发',
+			msg:[
+				{tit:'姓名：',text:'郎惠雯'},
+				{tit:'性别：',text:'女'},
+				{tit:'出生日期：',text:'1988.8.17'},
+				{tit:'现居地：',text:'海淀区'},
+				{tit:'电话：',text:'13439880864'},
+				{tit:'邮箱：',text:'541655663@qq.com'},
+				{tit:'婚姻状况：',text:'否'},
+				{tit:'工作年份：',text:'2012'}
+			]
+		}
+	})
+	var vu2 = new Vue({
+		el:'.box2',
+		data:{
+			tit2:'工作历程',
+			works:[
+				{year:'2012',text:'CC视频'},
+				{year:'2014',text:'高教网'},
+				{year:'2016',text:'财佰通'}
+			],
+			num:1
+		},
+		methods:{
+			work:function(index){
+				this.num = index;
+			}
+		}
+	})
+	var vu4 = new Vue({
+		el:'.box3',
+		data:{
+			workmain:[
+				{text:'负责CC视频官网多设备响应式页面开发（兼容到IE6）；创建css代码库；admin后台系统前端重构；以及活动页面制作和日常维护迭代更新。',tech:'应用技术：css html jquery bootstrap html5 css3',link:'<a href="http://www.bokecc.com" target="_blank">www.bokecc.com</a>'},
+				{text:'负责高教网1.0~2.0前端开发（兼容到IE6）；负责公司h5微信宣传页制作；以及日常维护迭代更新。',tech:'应用技术：swiper bootstrap css html js jquery html5 css3 ajax',link:'<a href="http://www.higher-edu.cn" target="_blank">www.higher-edu.cn</a>'},
+				{text:'负责财佰通特期待官网2.0、3.0pc端开发（兼容到IE8）；负责后台系统前端重构；配合后台调整接口；负责每月活动页面pc端和微信端制作（效果数据类）；根据产品需求日常迭代更新',tech:'应用技术：Echarts swiper css html jquery bootstrap html5 css3',link:'<a href="https://www.cbtdai.com" target="_blank">www.cbtdai.com</a>'}
+			]
+		}
+	})
+	$(function(){
+		var w = $('.works li').width();
+		$('.works li').height(w);
+		$('.works li').css('padding-top',w/3.8 +'px');
+
+		$('.works li').click(function(){
+			var num = $(this).index();
+			$('.modal .modal-body').each(function(){
+				if($(this).index()==num+1){
+					$(this).show().siblings(".modal-body").hide()
+				}else{
+
+				}
+			})
+		})
+		var h = $(window).height();
+		$('#b .swiper-slide').css('line-height',h+'px');
+	})
+	
+</script>
+</body>
+</html>
